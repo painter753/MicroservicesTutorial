@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-todo-app-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: spring-todo-app
+  strategy:
+    type: Recreate    
+  template:
+    metadata:
+      labels:
+        app: spring-todo-app
+    spec:
+      containers:
+        - name: spring-todo-app
+          image: painter774/spring-todo-app:0.0.3
+          ports:
+            - name: web
+              containerPort: 8000
+                
