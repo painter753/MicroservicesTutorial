@@ -1,15 +1,16 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: spring-todo-app-ingress
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
   - host: arch.homework
     http: 
       paths:
         - path: /
+          pathType: Prefix
           backend:
-            serviceName: spring-todo-app-service
-            servicePort: 9000
+            service:
+              name: spring-todo-app-service
+              port: 
+                number: 9000
